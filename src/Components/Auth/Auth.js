@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getMember} from '../../redux/reducer';
+import {Link} from 'react-router-dom';
 
 class Auth extends Component {
     constructor(props) {
@@ -15,10 +16,11 @@ class Auth extends Component {
         }
     }
 
-    componentDidMount() {
-        if(this.props.member.email) {
-            this.props.history.push('/home');
-        }
+
+    handleEmailInput = (event) => {
+        this.setState({
+            email: event.target.value
+        });
     }
 
     handleMemNumInput = (event) => {
@@ -38,7 +40,6 @@ class Auth extends Component {
         axios.post('/auth/register', {membershipNumber, email, password})
         .then(res => {
             this.props.getMember(res.data);
-            this.props.history.push('/home');
         })
         .catch(err => console.log(err));
     }
@@ -48,9 +49,12 @@ class Auth extends Component {
         axios.post('/auth/login', {membershipNumber, password})
         .then(res => {
             this.props.getMember(res.data);
-            this.props.history.push('/home');
         })
         .catch(err => console.log(err));
+    }
+
+    handleToggle = () => {
+        this.setState({registerView: !this.state.registerView});
     }
 
 
@@ -58,15 +62,27 @@ class Auth extends Component {
         return(
             <div>
                 <section>
-                    <p>Membership Number</p>
-                    <input type="text" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
-                    <p>Password</p>
-                    <input type="password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
+                    {!this.state.registerView
+                    ?  (<>
+                        <h3>Login To Your Membership Page!</h3>
+                        <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
+                        <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
+                        </>)
+                    : <h4>Register Here</h4>}
+                    
+                {this.state.registerView
+                ? (<>
+                    <input placeholder="Email" type="text" onChange={(event) => this.handleEmailInput(event)} value={this.state.email} />
+                    <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
+                    <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
+                    <Link to="/home"><button onClick={this.handleRegister}>Register</button></Link>
+                    <p>Already Registered? <button onClick={this.handleToggle}>Login Here</button></p>
+                    </>)
+                : (<>
+                    <Link to="/home"><button onClick={this.handleLogin}>Login</button></Link>
+                    <p>Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
+                    </>)}
                 </section>
-                <div>
-                    <button onClick={this.handleLogin}>Login</button>
-                    <button onClick={this.handleRegister}>Register</button>
-                </div>
             </div>
         )
     }
