@@ -12,8 +12,8 @@ export default (
         <Route exact path='/' component={Auth} />
         <Route path='/home' component={Home} />
         <Route path='/booking' component={Booking} />
-        <Route path='scores' component={Scores} />
-        <Route path='renew' component={Renew} />
-        <Route path='info' component={CourseInfo} />
+        <Route path='/scores' component={Scores} />
+        <Route path='/renew' component={Renew} />
+        <Route path='/info' component={CourseInfo} />
     </Switch>
 )

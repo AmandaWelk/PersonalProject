@@ -8,12 +8,12 @@ import {withRouter} from 'react-router-dom';
 const App = props => {
   return(
     <div>
-      {routes}
       {props.location.pathname !== '/'
       ?
       <Header/>
       :
       null}
+      {routes}
     </div>
   );
 }

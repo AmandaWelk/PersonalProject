@@ -68,7 +68,7 @@ class Auth extends Component {
                         <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
                         <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
                         </>)
-                    : <h4>Register Here</h4>}
+                    : <h4>Register:</h4>}
                     
                 {this.state.registerView
                 ? (<>
