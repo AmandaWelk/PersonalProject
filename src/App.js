@@ -10,7 +10,7 @@ const App = props => {
     <div>
       {props.location.pathname !== '/'
       ?
-      <Header/>
+      <Header />
       :
       null}
       {routes}

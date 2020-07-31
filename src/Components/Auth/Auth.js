@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getMember} from '../../redux/reducer';
-import {Link} from 'react-router-dom';
 
 class Auth extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            membershipNumber: '',
+            membership_number: '',
             password: '',
             email: '',
             registerView: false
@@ -25,7 +24,7 @@ class Auth extends Component {
 
     handleMemNumInput = (event) => {
         this.setState({
-            membershipNumber: event.target.value
+            membership_number: event.target.value
         });
     }
 
@@ -36,19 +35,22 @@ class Auth extends Component {
     }
 
     handleRegister = () => {
-        const {membershipNumber, email, password} = this.state;
-        axios.post('/auth/register', {membershipNumber, email, password})
-        .then(res => {
+        const {membership_number, email, password} = this.state;
+        axios.post('/auth/register', {membership_number, email, password})
+        .then((res) => {
             this.props.getMember(res.data);
+            this.props.history.push('/home');
         })
         .catch(err => console.log(err));
     }
 
     handleLogin = () => {
-        const {membershipNumber, password} = this.state;
-        axios.post('/auth/login', {membershipNumber, password})
-        .then(res => {
+        const {membership_number, password} = this.state;
+        axios.post('/auth/login', {membership_number, password})
+        .then((res) => {
+            console.log(res.data)
             this.props.getMember(res.data);
+            this.props.history.push('/home');
         })
         .catch(err => console.log(err));
     }
@@ -75,11 +77,11 @@ class Auth extends Component {
                     <input placeholder="Email" type="text" onChange={(event) => this.handleEmailInput(event)} value={this.state.email} />
                     <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
                     <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
-                    <Link to="/home"><button onClick={this.handleRegister}>Register</button></Link>
+                    <button onClick={this.handleRegister}>Register</button>
                     <p>Already Registered? <button onClick={this.handleToggle}>Login Here</button></p>
                     </>)
                 : (<>
-                    <Link to="/home"><button onClick={this.handleLogin}>Login</button></Link>
+                    <button onClick={this.handleLogin}>Login</button>
                     <p>Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
                     </>)}
                 </section>

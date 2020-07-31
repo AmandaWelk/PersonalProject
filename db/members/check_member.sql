@@ -1,2 +1,2 @@
 SELECT * FROM members
-WHERE email = ${email};
+WHERE membership_number = ${membership_number};

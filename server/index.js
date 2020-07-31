@@ -1,12 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const massive = require("massive");
+const session = require("express-session");
 const authCtrl = require("./controllers/authCtrl");
 const teeTimeCtrl = require("./controllers/teeTimeCtrl");
 
 const app = express();
 
-const {SERVER_PORT, CONNECTION_STRING} = process.env;
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 massive({
     connectionString: CONNECTION_STRING,
@@ -17,6 +18,17 @@ massive({
         console.log("db connected");
     })
     .catch(err => console.log(err));
+
+app.use(
+    session({
+        secret: SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 52
+        },
+    })
+);
 
 app.use(express.json());
 

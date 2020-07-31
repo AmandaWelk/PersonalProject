@@ -10,6 +10,7 @@ class Header extends Component {
         axios.get('/auth/logout')
         .then(() => {
             this.props.clearUser();
+            //this.props.history.push('/');
         })
         .catch(err => console.log(err));
     }
@@ -21,7 +22,7 @@ class Header extends Component {
             <Link to='/scores'><button>Enter Your Scores</button></Link>
             <Link to='/info'><button>Course Information</button></Link>
             <Link to='/renew'><button>Renew Membership</button></Link>
-            <Link to='/'><button onClick={this.handleLogout}>Logout</button></Link>
+            <button onClick={this.handleLogout}>Logout</button>
         </div>
         )
     }
