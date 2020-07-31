@@ -38,6 +38,10 @@ app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
 
 //teeTime endpoints
+app.post('/api/tee_time', teeTimeCtrl.createTeeTime);
+app.get('/api/tee_times/:id', teeTimeCtrl.getMemberTeeTimes);
+app.put('/api/tee_time/:id', teeTimeCtrl.editTeeTime);
+app.delete('/api/tee_time/:id', teeTimeCtrl.deleteTeeTime);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port ${SERVER_PORT}`);
