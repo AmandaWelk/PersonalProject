@@ -1,0 +1,42 @@
+.auth-background {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: relative;
+}
+
+.auth-background::after {
+    content: "";
+    background-image: url('https://wallpaperset.com/w/full/b/4/f/496124.jpg');
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.auth-box {
+    background-color: #27AE60;
+    height: 250px;
+    width: 700px;
+    margin-left: 550px;
+    border-radius: 25px;
+}
+
+#text {
+    color: white;
+    margin-left: 200px;
+}
+
+#textR {
+    color: white;
+    margin-left: 300px;
+}
+
+#text2 {
+    color: white;
+    margin-left: 230px;
+}
+

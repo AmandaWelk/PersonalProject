@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getMember} from '../../redux/reducer';
+import './Auth.css';
 
 class Auth extends Component {
     constructor(props) {
@@ -62,15 +63,15 @@ class Auth extends Component {
 
     render() {
         return(
-            <div>
-                <section>
+            <div className="auth-background">
+                <section className="auth-box">
                     {!this.state.registerView
                     ?  (<>
-                        <h3>Login To Your Membership Page!</h3>
+                        <h3 id="text">Login To Your Membership Page!</h3>
                         <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
                         <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
                         </>)
-                    : <h4>Register:</h4>}
+                    : <h3 id="textR">Register:</h3>}
                     
                 {this.state.registerView
                 ? (<>
@@ -78,11 +79,11 @@ class Auth extends Component {
                     <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
                     <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
                     <button onClick={this.handleRegister}>Register</button>
-                    <p>Already Registered? <button onClick={this.handleToggle}>Login Here</button></p>
+                    <p id="text2">Already Registered? <button onClick={this.handleToggle}>Login Here</button></p>
                     </>)
                 : (<>
                     <button onClick={this.handleLogin}>Login</button>
-                    <p>Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
+                    <p id="text2">Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
                     </>)}
                 </section>
             </div>
