@@ -64,28 +64,33 @@ class Auth extends Component {
     render() {
         return(
             <div className="auth-background">
-                <section className="auth-box">
+                <div className="auth-box">
                     {!this.state.registerView
                     ?  (<>
                         <h3 id="text">Login To Your Membership Page!</h3>
+                        <div className="inputs1">
                         <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
                         <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
+                        </div>
                         </>)
                     : <h3 id="textR">Register:</h3>}
                     
                 {this.state.registerView
                 ? (<>
+                    <div className="inputs2">
                     <input placeholder="Email" type="text" onChange={(event) => this.handleEmailInput(event)} value={this.state.email} />
                     <input type="text" placeholder="Membership Number" onChange={(event) => this.handleMemNumInput(event)} value={this.state.membershipNumber} />
                     <input type="password" placeholder="Password" onChange={(event) => this.handlePasswordInput(event)} value={this.state.password} />
-                    <button onClick={this.handleRegister}>Register</button>
-                    <p id="text2">Already Registered? <button onClick={this.handleToggle}>Login Here</button></p>
+                    </div>
+                    <button className="button-R" onClick={this.handleRegister}>Register</button>
+                    <p id="text2b">Already Registered? <button onClick={this.handleToggle}>Login Here</button></p>
                     </>)
                 : (<>
-                    <button onClick={this.handleLogin}>Login</button>
-                    <p id="text2">Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
+                    <button className="button-L" onClick={this.handleLogin}>Login</button>
+                    <p id="text2a">Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
                     </>)}
-                </section>
+                </div>
+                <h1>TBD Golf Club</h1>
             </div>
         )
     }
