@@ -61,17 +61,28 @@ class Booking extends Component {
     
     render() {
         console.log(this.props)
-        const mappedTeeTimes = this.state.tee_times.map((tee_time, i) => (
-            <div>
+        const mappedTeeTimes = this.state.tee_times.map((tee_time, i) => {
+           console.log(tee_time)
+            return(
+            <div className="teebox">
+            <div className="tee-times">
+                <p className="ptext">Day:</p>
                 <h4 key={i}>{tee_time.what_day}</h4>
+                <p className="ptext2">Time:</p>
                 <h4 key={i}>{tee_time.what_time}</h4>
+                <p className="ptext3">Golfers:</p>
                 <h4 key={i}>{tee_time.number_of_golfers}</h4>
-                <button onClick={() => this.deleteTeeTime(tee_time.tee_time_id)}>Delete</button>
+                <div className="tbuttons">
+                <button className="tbutton">Edit</button>
+                <button className="tbutton2" onClick={() => this.deleteTeeTime(tee_time.tee_time_id)}>Delete</button>
+                </div>
             </div>
-        ))
+            </div>
+        )})
 
         return(
-            <div>
+            <div className="booking">
+                <div>
                 <h2 className="book">Book Here:</h2>
                 <div className="tee_time_cats">
                     <div className="selectors">
@@ -115,6 +126,7 @@ class Booking extends Component {
                 <h2 className="manage">Manage Tee-Times:</h2>
                 <div>
                     {mappedTeeTimes}
+                </div>
                 </div>
             </div>
         )

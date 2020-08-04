@@ -32,10 +32,11 @@ module.exports = {
     },
 
     deleteTeeTime: (req, res) => {
-        const {id} = req.params;
+        const id = +req.params.id;
         const db = req.app.get('db');
+        console.log(req.params)
 
-        db.tee_times.deleteTeeTime(id)
+        db.tee_times.deleteTeeTime(+id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err));
     }

@@ -1,3 +1,24 @@
+.booking {
+    width: 100vw;
+    height: calc(100% - 10vh);
+    display: block;
+    position: relative;
+}
+
+.booking::after {
+    content: "";
+    background-image: url('https://www.swopememorialgolfcourse.com/images/slider-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
 .tee_time_cats {
     font-size: 15px;
     padding: 20px;
@@ -7,7 +28,7 @@
     position: relative;
     width: 400px;
     top: 30px;
-    left: 600px;
+    left: 640px;
 }
 
 .selectors {
@@ -35,14 +56,14 @@
 
 .book {
     margin: 0;
-    margin-left: 770px;
+    margin-left: 800px;
     margin-top: 30px;
     font-weight: lighter;
 }
 
 .manage {
     margin: 0;
-    margin-left: 730px;
+    margin-left: 760px;
     margin-top: 70px;
     font-weight: lighter;
 }
@@ -50,4 +71,40 @@
 .book-button {
     margin-top: 20px;
     font-size: 17px;
+}
+
+.teebox {
+    font-size: 20px;
+    padding: 30px;
+    margin: 25px;
+    margin-left: 660px;
+    background: #fff;
+    border: 2px solid rgb(97, 187, 131);
+    border-radius: 6px;
+    width: 350px;
+    height: 100px;
+}
+
+.tee-times {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tbutton, .tbutton2 {
+    font-size: 17px;
+}
+
+.tbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 120px;
+}
+
+.ptext, .ptext2, .ptext3 {
+    font-size: 16px;
 }
