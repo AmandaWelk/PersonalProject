@@ -1,18 +1,22 @@
 module.exports = {
     createTeeTime: (req, res) => {
-        const {id, what_day, what_time, number_of_golfers} = req.body;
+        console.log(req.body)
+        const {what_day, what_time, number_of_golfers} = req.body;
+        const {member_id} = req.session.members;
         const db = req.app.get('db');
 
-        db.tee_times.createTeeTime(id, what_day, what_time, number_of_golfers)
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err));
+        db.tee_times.createTeeTime({member_id, what_day, what_time, number_of_golfers})
+        .then(member => res.status(200).send(member))
+        .catch(err => {
+            console.log(err)
+            res.status(500).send(err)});
     },
 
     getMemberTeeTimes: (req, res) => {
-        const {id} = req.params;
+        const id = +req.params.id;
         const db = req.app.get('db');
 
-        db.tee_times.getMemberTeeTimes(id)
+        db.tee_times.getMemberTeeTimes({id})
         .then(tee_times => res.status(200).send(tee_times))
         .catch(err => res.status(500).send(err));
     },

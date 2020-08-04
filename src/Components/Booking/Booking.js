@@ -9,10 +9,14 @@ class Booking extends Component {
 
         this.state = {
             tee_times: [],
-            what_day: '',
-            what_time: '',
+            what_day: 'Sunday',
+            what_time: '8:00 AM',
             number_of_golfers: 1
         }
+    }
+
+    componentDidMount = () => {
+        this.getMemberTeeTimes()
     }
 
     handleDaySelect = (value) => {
@@ -24,22 +28,23 @@ class Booking extends Component {
     }
 
     handleNumberSelect = (value) => {
-        this.setState({number_of_golfers: value})
+        this.setState({number_of_golfers: +value})
     }
     
     getMemberTeeTimes = () => {
-        axios.get(`/api/tee_times/${this.props.members.member_id}`)
+        axios.get(`/api/tee_times/${this.props.member.member_id}`)
         .then((res) => this.setState({tee_times: res.data}))
         .catch(err => console.log(err));
     }
 
     createTeeTime = () => {
-        axios.post('/api/tee_time', {id: this.props.members.member_id, what_day: this.state.what_day, what_time: this.state.what_time, number_of_golfers: this.state.number_of_golfers})
-        .then(() => {
+        console.log(this.props.member)
+        axios.post('/api/tee_time', {member_id: this.props.member.member_id, what_day: this.state.what_day, what_time: this.state.what_time, number_of_golfers: this.state.number_of_golfers})
+        .then(res => {
             this.getMemberTeeTimes();
             this.setState({
-                what_day: '',
-                what_time: '',
+                what_day: 'Sunday',
+                what_time: '8:00 AM',
                 number_of_golfers: 1
             });
         })
@@ -78,7 +83,6 @@ class Booking extends Component {
                             <option>Thursday</option>
                             <option>Friday</option>
                             <option>Saturday</option>
-                            <option>Sunday</option>
                         </select>
                         <select className="options2" value={this.state.what_time} onChange={(event) => this.handleTimeSelect(event.target.value)}>
                             <option>8:00 AM</option>
