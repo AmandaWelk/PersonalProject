@@ -18,7 +18,7 @@
 }
 
 .auth-box {
-    background-color: #27AE60;
+    background-color: rgb(97, 187, 131);
     height: 250px;
     width: 500px;
     margin-left: 600px;
@@ -76,5 +76,14 @@
 .button-R {
     margin-top: 30px;
     margin-left: 220px;
+}
+
+.course {
+    color: white;
+    font-style: italic;
+    font-size: 50px;
+    margin-top: 450px;
+    margin-left: 1300px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 

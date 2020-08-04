@@ -1,0 +1,12 @@
+.header {
+    background-color: rgb(97, 187, 131);
+    height: 10vh;
+}
+
+.navs {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 400px;
+    padding-top: 30px;
+}
+

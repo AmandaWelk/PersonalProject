@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS members (
 CREATE TABLE IF NOT EXISTS tee_times (
     tee_time_id SERIAL PRIMARY KEY,
     member_id INT REFERENCES tee_times(tee_time_id),
-    what_day DATE,
-    what_time TIME,
+    what_day VARCHAR(100),
+    what_time VARCHAR(100),
     number_of_golfers INTEGER
 );

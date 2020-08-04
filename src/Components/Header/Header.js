@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {clearUser} from '../../redux/reducer';
 import axios from 'axios';
+import './Header.css';
 
 class Header extends Component {
 
@@ -17,13 +18,16 @@ class Header extends Component {
 
     render() {
         return(
-            <div>
-            <Link to='/booking'><button>Book a Tee-Time</button></Link>
-            <Link to='/scores'><button>Enter Your Scores</button></Link>
-            <Link to='/info'><button>Course Information</button></Link>
-            <Link to='/renew'><button>Renew Membership</button></Link>
-            <button onClick={this.handleLogout}>Logout</button>
-        </div>
+            <div className="header">
+                <nav className="navs">
+                    <Link to='/home'><span>Home</span></Link>
+                    <Link to='/booking'><span>Book a Tee-Time</span></Link>
+                    <Link to='/scores'><span>Enter Your Scores</span></Link>
+                    <Link to='/info'><span>Course Information</span></Link>
+                    <Link to='/renew'><span>Renew Membership</span></Link>
+                    <button onClick={this.handleLogout}>Logout</button>
+                </nav>
+            </div>
         )
     }
 }

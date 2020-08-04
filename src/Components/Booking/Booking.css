@@ -1,0 +1,53 @@
+.tee_time_cats {
+    font-size: 15px;
+    padding: 20px;
+    background: #fff;
+    border: 2px solid rgb(97, 187, 131);
+    border-radius: 6px;
+    position: relative;
+    width: 400px;
+    top: 30px;
+    left: 600px;
+}
+
+.selectors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: stretch;
+}
+
+.options {
+    font-size: 20px;
+}
+
+.options2 {
+    font-size: 20px;
+    width: 130px;
+}
+
+.options3 {
+    font-size: 20px;
+    width: 130px;
+}
+
+.book {
+    margin: 0;
+    margin-left: 770px;
+    margin-top: 30px;
+    font-weight: lighter;
+}
+
+.manage {
+    margin: 0;
+    margin-left: 730px;
+    margin-top: 70px;
+    font-weight: lighter;
+}
+
+.book-button {
+    margin-top: 20px;
+    font-size: 17px;
+}
