@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import './Booking.css';
 import axios from 'axios';
-import UpdateTeeTime from '../UpdateTeeTime/UpdateTeeTime';
 
-class Booking extends Component {
-    constructor(props) {
-        super(props);
+class UpdateTeeTime extends Component {
+    constructor() {
+        super();
 
         this.state = {
-            tee_times: [],
             what_day: 'Sunday',
             what_time: '8:00 AM',
             number_of_golfers: 1,
@@ -17,8 +13,8 @@ class Booking extends Component {
         }
     }
 
-    componentDidMount = () => {
-        this.getMemberTeeTimes()
+    handleEditView = () => {
+        this.setState({editView: !this.state.editView})
     }
 
     handleDaySelect = (value) => {
@@ -33,49 +29,48 @@ class Booking extends Component {
         this.setState({number_of_golfers: +value})
     }
 
-    handleEditView = () => {
-        this.setState({editView: !this.state.editView})
-    }
-    
-    getMemberTeeTimes = () => {
-        axios.get(`/api/tee_times/${this.props.member.member_id}`)
-        .then((res) => this.setState({tee_times: res.data}))
-        .catch(err => console.log(err));
-    }
-
-    createTeeTime = () => {
-        console.log(this.props.member)
-        axios.post('/api/tee_time', {member_id: this.props.member.member_id, what_day: this.state.what_day, what_time: this.state.what_time, number_of_golfers: this.state.number_of_golfers})
+    editTeeTime = () => {
+        const {what_day, what_time, number_of_golfers} = this.state;
+        console.log(this.props)
+        console.log(this.state)
+        axios.put(`/api/tee_time/${this.props.tee_time.tee_time_id}`, {what_day, what_time, number_of_golfers})
         .then(res => {
-            this.getMemberTeeTimes();
+            this.props.getMemberTeeTimes();
+            this.handleEditView();
             this.setState({
-                what_day: 'Sunday',
-                what_time: '8:00 AM',
+                what_day: '',
+                what_time: '',
                 number_of_golfers: 1
             });
         })
+        .catch(err => console.log(err));
+    }
+
+    deleteTeeTime = (id) => {
+        axios.delete(`/api/tee_time/${id}`)
+        .then(() => {
+            this.props.getMemberTeeTimes();
+        })
         .catch(err => console.log(err))
     }
-    
+
     render() {
         console.log(this.props)
-        const mappedTeeTimes = this.state.tee_times.map((tee_time, i) => {
-           console.log(tee_time)
-            return(
-            <UpdateTeeTime
-                key={i}
-                tee_time={tee_time}
-                getMemberTeeTimes={this.getMemberTeeTimes}
-            />
-        )})
 
         return(
-            <div className="booking">
-                <div>
-                <h2 className="book">Book Here:</h2>
-                <div className="tee_time_cats">
-                    <div className="selectors">
-                            <select className="options" value={this.state.what_day} onChange={(event) => this.handleDaySelect(event.target.value)}>
+                <div className="teebox">
+                <div className="tee-times">
+                <p className="ptext">Day:</p>
+                <h4>{this.props.tee_time.what_day}</h4>
+                <p className="ptext2">Time:</p>
+                <h4>{this.props.tee_time.what_time}</h4>
+                <p className="ptext3">Golfers:</p>
+                <h4>{this.props.tee_time.number_of_golfers}</h4>
+                <div className="tbuttons">
+                {!this.state.editView
+                    ? <button className="tbutton" onClick={this.handleEditView}>Edit</button>
+                    : (<div className="e-selectors">
+                        <select onChange={(event) => this.handleDaySelect(event.target.value)} value={this.state.what_day}>
                             <option>Sunday</option>
                             <option>Monday</option>
                             <option>Tuesday</option>
@@ -84,7 +79,7 @@ class Booking extends Component {
                             <option>Friday</option>
                             <option>Saturday</option>
                         </select>
-                        <select className="options2" value={this.state.what_time} onChange={(event) => this.handleTimeSelect(event.target.value)}>
+                        <select onChange={(event) => this.handleTimeSelect(event.target.value)} value={this.state.what_time}>
                             <option>8:00 AM</option>
                             <option>8:30 AM</option>
                             <option>9:00 AM</option>
@@ -103,25 +98,20 @@ class Booking extends Component {
                             <option>3:30 PM</option>
                             <option>4:00 PM</option>
                         </select>
-                        <select className="options3" value={this.state.number_of_golfers} onChange={(event) => this.handleNumberSelect(event.target.value)}>
+                        <select onChange={(event) => this.handleNumberSelect(event.target.value)} value={this.state.number_of_golfers}>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                         </select>
-                        <button className="book-button" onClick={this.createTeeTime}>Book Tee-Time</button>
-                    </div>
+                        <button onClick={this.editTeeTime}>Submit</button>
+                    </div>)}
+                    <button className="tbutton2" onClick={() => this.deleteTeeTime(this.props.tee_time.tee_time_id)}>Delete</button>
                 </div>
-                <h2 className="manage">Manage Tee-Times:</h2>
-                <div>
-                    {mappedTeeTimes}
-                </div>
-                </div>
+            </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = reduxState => reduxState;
-
-export default connect(mapStateToProps)(Booking);
+export default UpdateTeeTime;
