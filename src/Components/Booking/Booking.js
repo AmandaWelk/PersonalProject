@@ -11,7 +11,8 @@ class Booking extends Component {
             tee_times: [],
             what_day: 'Sunday',
             what_time: '8:00 AM',
-            number_of_golfers: 1
+            number_of_golfers: 1,
+            editView: false
         }
     }
 
@@ -29,6 +30,10 @@ class Booking extends Component {
 
     handleNumberSelect = (value) => {
         this.setState({number_of_golfers: +value})
+    }
+
+    handleEditView = () => {
+        this.setState({editView: !this.state.editView})
     }
     
     getMemberTeeTimes = () => {
@@ -49,6 +54,23 @@ class Booking extends Component {
             });
         })
         .catch(err => console.log(err))
+    }
+
+    editTeeTime = () => {
+        const {what_day, what_time, number_of_golfers} = this.state;
+        console.log(this.props)
+        console.log(this.state)
+        axios.put(`/api/tee_time/${this.state.tee_times.tee_time_id}`, {what_day, what_time, number_of_golfers})
+        .then(res => {
+            this.props.getMemberTeeTimes(res.data[0]);
+            this.handleEditView();
+            this.setState({
+                what_day: '',
+                what_time: '',
+                number_of_golfers: 1
+            });
+        })
+        .catch(err => console.log(err));
     }
 
     deleteTeeTime = (id) => {
@@ -73,8 +95,46 @@ class Booking extends Component {
                 <p className="ptext3">Golfers:</p>
                 <h4 key={i}>{tee_time.number_of_golfers}</h4>
                 <div className="tbuttons">
-                <button className="tbutton">Edit</button>
-                <button className="tbutton2" onClick={() => this.deleteTeeTime(tee_time.tee_time_id)}>Delete</button>
+                {!this.state.editView
+                    ? <button className="tbutton" onClick={this.handleEditView}>Edit</button>
+                    : (<div className="e-selectors">
+                        <select onChange={(event) => this.handleDaySelect(event.target.value)} value={this.state.what_day}>
+                            <option>Sunday</option>
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                        </select>
+                        <select onChange={(event) => this.handleTimeSelect(event.target.value)} value={this.state.what_time}>
+                            <option>8:00 AM</option>
+                            <option>8:30 AM</option>
+                            <option>9:00 AM</option>
+                            <option>9:30 AM</option>
+                            <option>10:00 AM</option>
+                            <option>10:30 AM</option>
+                            <option>11:00 AM</option>
+                            <option>11:30 AM</option>
+                            <option>12:00 PM</option>
+                            <option>12:30 PM</option>
+                            <option>1:00 PM</option>
+                            <option>1:30 PM</option>
+                            <option>2:00 PM</option>
+                            <option>2:30 PM</option>
+                            <option>3:00 PM</option>
+                            <option>3:30 PM</option>
+                            <option>4:00 PM</option>
+                        </select>
+                        <select onChange={(event) => this.handleNumberSelect(event.target.value)} value={this.state.number_of_golfers}>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                        <button onClick={this.editTeeTime}>Submit</button>
+                    </div>)}
+                    <button className="tbutton2" onClick={() => this.deleteTeeTime(tee_time.tee_time_id)}>Delete</button>
                 </div>
             </div>
             </div>

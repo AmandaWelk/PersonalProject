@@ -22,7 +22,7 @@ module.exports = {
     },
 
     editTeeTime: (req, res) => {
-        const {id} = req.params;
+        const id = +req.params.id;
         const {what_day, what_time, number_of_golfers} = req.body;
         const db = req.app.get('db');
 
