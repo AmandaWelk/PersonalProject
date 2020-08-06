@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.renew-back {
+    width: 100vw;
+    height: calc(100vh - 10vh);
+    display: block;
+    position: relative;
+}
+
+.renew-back::after {
+    content: "";
+    background-image: url('https://static7.depositphotos.com/1117454/698/i/450/depositphotos_6986182-stock-photo-golf.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.r-text {
+    font-weight: lighter;
+    margin-left: 720px;
+}

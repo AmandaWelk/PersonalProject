@@ -1,6 +1,6 @@
 .auth-background {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: block;
     position: relative;
 }
@@ -21,8 +21,9 @@
     background-color: rgb(97, 187, 131);
     height: 250px;
     width: 500px;
-    margin-left: 600px;
+    margin-left: 650px;
     border-radius: 30px;
+    margin-bottom: 0;
 }
 
 #text {

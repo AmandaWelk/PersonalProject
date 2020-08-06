@@ -64,6 +64,12 @@ class Auth extends Component {
     render() {
         return(
             <div className="auth-background">
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
+                <p>.</p>
                 <div className="auth-box">
                     {!this.state.registerView
                     ?  (<>
