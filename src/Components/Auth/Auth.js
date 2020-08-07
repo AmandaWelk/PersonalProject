@@ -96,7 +96,7 @@ class Auth extends Component {
                     <p id="text2a">Not Registered? <button onClick={this.handleToggle}>Register Here</button></p>
                     </>)}
                 </div>
-                <h1 className="course">Lakeside Woods Golf Club</h1>
+                <h1 className="course">Lakeside Woods Country Club</h1>
             </div>
         )
     }

@@ -1,7 +1,68 @@
 .home {
+    width: 100vw;
     height: calc(100vh - 10vh);
+    display: block;
+    position: relative;
 }
 
-h1 {
-    margin: 0;
+.home::after {
+    content: "";
+    background-image: url('https://www.kdcarchitects.com/uploads/images/Lake-Toxaway_c390373fe996.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.welcome {
+    font-weight: lighter;
+    margin-left: 520px;
+    font-size: 40px;
+}
+
+.home-sections {
+    display: flex;
+    flex-direction: row;
+}
+
+#section1, #section2, #section3 {
+    width: 250px;
+    height: 200px;
+    background-color: white;
+    border: 2px solid rgb(97, 187, 131);
+    border-radius: 8px;
+    margin-left: 220px;
+    margin-top: 150px;
+    padding: 10px 15px 0;
+}
+
+.click {
+    margin-left: 75px;
+    margin-top: 15px;
+    font-size: 17px;
+    color: white;
+    background-color: rgb(97, 187, 131);
+    border: 0.5px solid black;
+    border-radius: 8px;
+}
+
+.teetitle {
+    margin-left: 85px;
+}
+
+.memtitle {
+    margin-left: 35px;
+}
+
+.infotitle {
+    margin-left: 50px;
+}
+
+#boxtext {
+    margin-left: 10px;
 }
