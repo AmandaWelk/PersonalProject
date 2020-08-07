@@ -83,8 +83,11 @@
     color: white;
     font-style: italic;
     font-size: 50px;
-    margin-top: 200px;
-    margin-left: 1280px;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    margin-top: 220px;
+    margin-left: 1050px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 

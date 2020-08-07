@@ -33,9 +33,17 @@ const Renew = () => {
                 </Elements>
             </div>
         </div>
-            {membershipInfo.active_membership && membershipInfo.active_membership.toString()}
-            {membershipInfo.amount_paid}
-            {membershipInfo.last_payment_date}
+        <h2 className="recent">Most Recent Payment:</h2>
+        <section className="info-box">
+        <div className="info">
+            <h4>Active Member?</h4>
+            <p className="mtext">{membershipInfo.active_membership && membershipInfo.active_membership.toString()}</p>
+            <h4>Amount Paid:</h4>
+            <p className="pricetext">${membershipInfo.amount_paid && membershipInfo.amount_paid.substring(0, 4)}</p>
+            <h4>Date:</h4>
+            <p className="dtext">{membershipInfo.last_payment_date && membershipInfo.last_payment_date.substring(1, 11)}</p>
+        </div>
+        </section>
         </div>
     )
 }
