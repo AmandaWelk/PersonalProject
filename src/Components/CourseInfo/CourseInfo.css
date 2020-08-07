@@ -1,0 +1,51 @@
+.info-background {
+    width: 100vw;
+    height: calc(100vh - 10vh);
+    display: block;
+    position: relative;
+}
+
+.info-background::after {
+    content: "";
+    background-image: url('https://www.landmarkvacations.com/wp-content/uploads/2019/12/web-highland_falls_golf_cover_photo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.infoheader {
+    font-weight: lighter;
+    margin-left: 730px;
+}
+
+.scorecard {
+    margin-left: 410px;
+}
+
+.card {
+    height: 550px;
+    width: 800px;
+    margin-left: 80px;
+}
+
+.sections {
+    display: flex;
+    flex-direction: row;
+}
+
+.infosection {
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    margin-left: 150px;
+    margin-top: 60px;
+    border: 2px solid rgb(97, 187, 131);
+    border-radius: 8px;
+    padding: 10px 15px 0;
+}
