@@ -12,3 +12,11 @@ CREATE TABLE IF NOT EXISTS tee_times (
     what_time VARCHAR(100),
     number_of_golfers INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS membership (
+    membership_id SERIAL PRIMARY KEY,
+    member_id INT REFERENCES members(member_id),
+    active_membership BOOL,
+    amount_paid NUMERIC,
+    last_payment_date VARCHAR(50)
+);

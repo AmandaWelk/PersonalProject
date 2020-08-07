@@ -4,6 +4,7 @@ const massive = require("massive");
 const session = require("express-session");
 const authCtrl = require("./controllers/authCtrl");
 const teeTimeCtrl = require("./controllers/teeTimeCtrl");
+const membershipsCtrl = require("./controllers/membershipsCtrl");
 const stripeCtrl = require("./controllers/stripeCtrl");
 
 const app = express();
@@ -46,6 +47,9 @@ app.delete('/api/tee_time/:id', teeTimeCtrl.deleteTeeTime);
 
 //stripe endpoint
 app.post('/api/payment', stripeCtrl.completePayment);
+
+//membership endpoints
+app.get('/api/memberships', membershipsCtrl.getMemberships);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port ${SERVER_PORT}`);
