@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
@@ -50,6 +51,12 @@ app.post('/api/payment', stripeCtrl.completePayment);
 
 //membership endpoints
 app.get('/api/memberships', membershipsCtrl.getMemberships);
+
+app.use(express.static(__dirname + "/../build"));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port ${SERVER_PORT}`);
